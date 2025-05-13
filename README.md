@@ -1,4 +1,4 @@
-# Infra Challenge 20240202
+## Infra Challenge 20240202
 
 ## Introdução
 
