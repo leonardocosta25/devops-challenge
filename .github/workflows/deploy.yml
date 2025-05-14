@@ -24,10 +24,10 @@ jobs:
           terraform_version: 1.5.0
 
       - name: Terraform Init
-        run: terraform init
+        run: terraform -chdir=terraform init
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        run: terraform -chdir=terraform apply -auto-approve
 
       - name: Pega IP da instância do Terraform
         id: tfoutput
