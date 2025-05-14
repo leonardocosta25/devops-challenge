@@ -36,6 +36,7 @@ jobs:
 
       - name: Salva chave privada no runner
         run: |
+          mkdir -p ~/.ssh
           echo "${{ secrets.AWS_SSH_PRIVATE_KEY }}" > ~/.ssh/aws-key.pem
           chmod 600 ~/.ssh/aws-key.pem
 
