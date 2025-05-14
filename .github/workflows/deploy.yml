@@ -30,4 +30,4 @@ jobs:
           sudo apt install -y ansible
 
       - name: Executa playbook Ansible
-        run: export ANSIBLE_HOST_KEY_CHECKING=False && ansible-playbook -i ansible/inventory.ini ansiblev2/playbook.yml
+        run: export ANSIBLE_HOST_KEY_CHECKING=False && ansible-playbook -i ansible/inventory.ini ansible/playbook.yml
