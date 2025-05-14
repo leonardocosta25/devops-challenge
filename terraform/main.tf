@@ -50,14 +50,14 @@ resource "aws_instance" "devops_server" {
     Name = "DevOpsChallenge"
   }
 
-  provisioner "remote-exec" {
-    inline = ["sudo apt update -y"]
+#   provisioner "remote-exec" {
+#     inline = ["sudo apt update -y"]
 
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      private_key = file(var.private_key_path)
-      host        = self.public_ip
-    }
-  }
+#     connection {
+#       type        = "ssh"
+#       user        = "ubuntu"
+#       private_key = file(var.private_key_path)
+#       host        = self.public_ip
+#     }
+#   }
 }
