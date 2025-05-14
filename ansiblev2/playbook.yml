@@ -1,6 +1,6 @@
 ---
 - name: Configurar servidor EC2
-  hosts: target
+  hosts: all
   become: true
   tasks:
     - name: Atualiza os pacotes
