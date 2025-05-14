@@ -40,7 +40,7 @@ jobs:
           echo "${{ secrets.AWS_SSH_PRIVATE_KEY }}" > ~/.ssh/aws-key.pem
           chmod 600 ~/.ssh/aws-key.pem
 
-      - name: Instala Ansible e SSH
+      - name: Instala Ansible
         run: |
           sudo apt update
           sudo apt install -y ansible
@@ -51,4 +51,4 @@ jobs:
       #     echo "$INSTANCE_IP ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/aws-key.pem ansible_ssh_common_args='-o StrictHostKeyChecking=no'" >> inventory.ini
 
       - name: Executa playbook Ansible
-        run: ansible-playbook -i inventory.ini ansiblev2/playbook.yml
+        run: ansible-playbook -i ansiblev2/inventory.ini ansiblev2/playbook.yml
