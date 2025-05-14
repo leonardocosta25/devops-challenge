@@ -21,7 +21,7 @@
 
     - name: Copiar página HTML
       copy:
-        src: ../../../web/*
+        src: ../web/*
         dest: /var/www/html/
         owner: www-data
         group: www-data

@@ -1,5 +1,6 @@
 # DevOps Challenge - Infraestrutura na AWS com CI/CD
 
+This is a challenge by [Coodesh](https://coodesh.com/)
 
 ## 🚀 Descrição
 
@@ -30,7 +31,7 @@ Este projeto cria e configura automaticamente uma instância EC2 na AWS, aplica 
 git clone https://github.com/leonardocosta25/devops-challenge.git
 cd devops-challenge
 terraform -chdir=terraform apply -auto-approve && bash generate_inventory.sh
-git add . && git commit -m "Alterações para teste da pipeline" && git push origin main
+git add . && git commit -m "Agora OK , vamos testar o final" && git push origin main
 ```
 
 
@@ -40,16 +41,15 @@ git add . && git commit -m "Alterações para teste da pipeline" && git push ori
 ```bash
 git clone https://github.com/leonardocosta25/devops-challenge.git
 cd devops-challenge
-terraform -chdir=terraform apply -auto-approve && bash generate_inventory.sh && ansible-playbook ansiblev2/provisioning.yml
+terraform -chdir=terraform apply -auto-approve && bash generate_inventory.sh && ansible-playbook ansible/provisioning.yml
 
 
 # Para destruir a infraestrutura criada, execute: 
-terraform destroy -auto-approve
+terraform -chdir=terraform destroy -auto-approve
 
 ```
 
-## Como projeto de teste foi utilizado só uma pagina HTML estática, mas pode facilmente expandir isso para incluir uma aplicação mais complexa. Tambpém podendo criar um pipeline de CI/CD mais robusto com testes automatizados, integração com Docker, etc.
-
+## Como projeto de teste foi utilizado só uma pagina HTML estática, mas pode facilmente expandir isso para incluir uma aplicação mais complexa. Também podendo criar um pipeline de CI/CD mais robusto com testes automatizados, integração com Docker, etc.
 
 
 

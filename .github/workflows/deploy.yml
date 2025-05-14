@@ -18,22 +18,6 @@ jobs:
       - name: Checkout código
         uses: actions/checkout@v3
 
-      # - name: Instala Terraform
-      #   uses: hashicorp/setup-terraform@v2
-      #   with:
-      #     terraform_version: 1.5.0
-
-      # - name: Terraform Init
-      #   run: terraform -chdir=terraform init
-
-      # - name: Terraform Apply
-      #   run: terraform -chdir=terraform apply -auto-approve
-
-      # - name: Pega IP da instância do Terraform
-      #   id: tfoutput
-      #   run: |
-      #     echo "INSTANCE_IP=$(terraform output -raw instance_ip)" >> $GITHUB_ENV
-
       - name: Salva chave privada no runner
         run: |
           mkdir -p ~/.ssh
@@ -45,10 +29,5 @@ jobs:
           sudo apt update
           sudo apt install -y ansible
 
-      # - name: Cria inventário dinâmico com IP
-      #   run: |
-      #     echo "[target]" > inventory.ini
-      #     echo "$INSTANCE_IP ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/aws-key.pem ansible_ssh_common_args='-o StrictHostKeyChecking=no'" >> inventory.ini
-
       - name: Executa playbook Ansible
-        run: export ANSIBLE_HOST_KEY_CHECKING=False && ansible-playbook -i ansiblev2/inventory.ini ansiblev2/playbook.yml
+        run: export ANSIBLE_HOST_KEY_CHECKING=False && ansible-playbook -i ansible/inventory.ini ansiblev2/playbook.yml

@@ -12,12 +12,6 @@ variable "key_name" {
   default     = "devops-challenge"
 }
 
-# variable "private_key_path" {
-#   description = "/home/leonardoac/devops-challenge/devops-challenge/.ssh/devops-challenge.pem"
-#   type        = string
-#   default     = "/home/leonardoac/devops-challenge/devops-challenge/.ssh/devops-challenge.pem"
-# }
-
 variable "ami_id" {
-  default = "ami-075686beab831bb7f" # Ubuntu Server 24.04 LTS (us-east-1)
+  default = "ami-075686beab831bb7f"
 }
