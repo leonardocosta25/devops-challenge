@@ -41,7 +41,7 @@ git add . && git commit -m "Agora OK , vamos testar o final" && git push origin 
 ```bash
 git clone https://github.com/leonardocosta25/devops-challenge.git
 cd devops-challenge
-terraform -chdir=terraform apply -auto-approve && bash generate_inventory.sh && ansible-playbook ansible/provisioning.yml
+terraform -chdir=terraform apply -auto-approve && bash generate_inventory.sh && ansible-playbook -i ansible/inventory.ini ansible/playbook.yml
 
 
 # Para destruir a infraestrutura criada, execute: 
