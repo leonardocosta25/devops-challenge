@@ -1,0 +1,47 @@
+---
+- name: Configurar servidor EC2
+  hosts: target
+  become: true
+  tasks:
+    - name: Atualiza os pacotes
+      apt:
+        update_cache: yes
+        upgrade: yes
+
+    - name: Instalar pacotes essenciais
+      apt:
+        name:
+          - nginx
+          - ufw
+          - fail2ban
+          - curl
+          - htop
+          - unattended-upgrades
+        state: present
+
+    - name: Copiar página HTML
+      copy:
+        src: ../../../web/*
+        dest: /var/www/html/
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    - name: Iniciar e habilitar nginx
+      service:
+        name: nginx
+        state: started
+        enabled: true
+
+    - name: Habilitar firewall
+      ufw:
+        rule: allow
+        name: 'OpenSSH'
+
+    - name: Habilitar porta HTTP
+      ufw:
+        rule: allow
+        name: 'Nginx Full'
+
+    - name: Ativar UFW
+      command: ufw --force enable

@@ -1,0 +1,19 @@
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+terraform/.terraform/
+.crash
+*.tfvars
+override.tf
+override.tf.json
+
+# Ansible
+*.retry
+__pycache__/
+
+# Outros
+*.log
+*.pem
+.env
+.ssh

@@ -1,0 +1,53 @@
+name: Deploy Infra AWS + Ansible
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: us-west-2
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Instala Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.0
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+
+      - name: Pega IP da instância do Terraform
+        id: tfoutput
+        run: |
+          echo "INSTANCE_IP=$(terraform output -raw instance_ip)" >> $GITHUB_ENV
+
+      - name: Salva chave privada no runner
+        run: |
+          echo "${{ secrets.AWS_SSH_PRIVATE_KEY }}" > ~/.ssh/aws-key.pem
+          chmod 600 ~/.ssh/aws-key.pem
+
+      - name: Instala Ansible e SSH
+        run: |
+          sudo apt update
+          sudo apt install -y ansible
+
+      - name: Cria inventário dinâmico com IP
+        run: |
+          echo "[target]" > inventory.ini
+          echo "$INSTANCE_IP ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/aws-key.pem ansible_ssh_common_args='-o StrictHostKeyChecking=no'" >> inventory.ini
+
+      - name: Executa playbook Ansible
+        run: ansible-playbook -i inventory.ini ansiblev2/playbook.yml

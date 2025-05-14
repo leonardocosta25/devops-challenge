@@ -1,3 +1,51 @@
+# DevOps Challenge - Infraestrutura na AWS com CI/CD
+
+
+## 🚀 Descrição
+
+Este projeto cria e configura automaticamente uma instância EC2 na AWS, aplica boas práticas de segurança e provisionamento, e entrega contínua de uma aplicação HTML via CI/CD.
+
+## 🧰 Tecnologias usadas
+
+- AWS EC2
+- Terraform
+- Ansible
+- GitHub Actions
+- NGINX
+- Ubuntu 24.04
+
+## ⚙️ Como instalar e executar
+
+### Pré-requisitos
+
+- AWS CLI configurado
+- Terraform
+- Ansible
+- Chave SSH pública configurada na AWS
+
+### Etapas
+
+1. Clone o repositório:
+```bash
+git clone https://github.com/leonardocosta25/devops-challenge.git
+cd devops-challenge
+terraform -chdir=terraform apply -auto-approve && ansible-playbook ansible/provisioning.yml
+
+
+# Para destruir a infraestrutura criada, execute: 
+terraform destroy -auto-approve
+
+```
+
+## Como projeto de teste foi utilizado só uma pagina HTML estática, mas pode facilmente expandir isso para incluir uma aplicação mais complexa. Tambpém podendo criar um pipeline de CI/CD mais robusto com testes automatizados, integração com Docker, etc.
+
+
+
+
+
+
+
+###################################################################################
 ## Infra Challenge 20240202
 
 ## Introdução
