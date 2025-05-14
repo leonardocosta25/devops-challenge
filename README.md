@@ -30,7 +30,7 @@ Este projeto cria e configura automaticamente uma instância EC2 na AWS, aplica 
 git clone https://github.com/leonardocosta25/devops-challenge.git
 cd devops-challenge
 terraform -chdir=terraform apply -auto-approve && bash generate_inventory.sh
-git add . && git commit -m "Adicionando o arquivo de inventário" && git push origin main
+git add . && git commit -m "Alterações para teste da pipeline" && git push origin main
 ```
 
 
