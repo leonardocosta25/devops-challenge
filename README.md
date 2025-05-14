@@ -25,7 +25,7 @@ Este projeto cria e configura automaticamente uma instância EC2 na AWS, aplica 
 
 ### Etapas
 
-1º EXEMPLO EXECUTANDO PRIMEIRO O APPLY DO TERRAFORM E DEPOIS FAZER COMMIT PRO GIT.
+1º EXEMPLO EXECUTANDO PRIMEIRO O APPLY DO TERRAFORM LOCAL E DEPOIS FAZER COMMIT PRO GIT.
 ```bash
 git clone https://github.com/leonardocosta25/devops-challenge.git
 cd devops-challenge
@@ -40,7 +40,7 @@ git add . && git commit -m "Alterações para teste da pipeline" && git push ori
 ```bash
 git clone https://github.com/leonardocosta25/devops-challenge.git
 cd devops-challenge
-terraform -chdir=terraform apply -auto-approve && ansible-playbook ansible/provisioning.yml
+terraform -chdir=terraform apply -auto-approve && bash generate_inventory.sh && ansible-playbook ansiblev2/provisioning.yml
 
 
 # Para destruir a infraestrutura criada, execute: 
